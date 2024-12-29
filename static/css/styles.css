@@ -1,0 +1,348 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* Full height of the viewport */
+    display: flex;
+    justify-content: center; /* Horizontally center */
+    align-items: center; /* Vertically center */
+    background-color: #f3f4f6; /* Optional background color */
+}
+
+.container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    --s: 65px; 
+    --c1: #f0f8ff;
+    --c2: #87ceeb;
+    --c3: #b0e0e6;
+    --_c: 75%, var(--c3) 52.72deg, #0000 0;
+    --_g1: conic-gradient(from -116.36deg at 25% var(--_c));
+    --_g2: conic-gradient(from 63.43deg at 75% var(--_c));
+    background: var(--_g1), var(--_g1) calc(3 * var(--s)) calc(var(--s) / 2),
+        var(--_g2), var(--_g2) calc(3 * var(--s)) calc(var(--s) / 2),
+        conic-gradient(
+        var(--c2) 63.43deg,
+        var(--c1) 0 116.36deg,
+        var(--c2) 0 180deg,
+        var(--c1) 0 243.43deg,
+        var(--c2) 0 296.15deg,
+        var(--c1) 0
+        );
+    background-size: calc(2 * var(--s)) var(--s); 
+        background-repeat: repeat; 
+        background-position: center; 
+        z-index: -1;
+}
+
+nav {
+    --main-color: black;
+    --font-color: #323232;
+    --bg-color: beige;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    position: fixed;
+    top: 20px;
+    left: auto;
+    right: auto;
+    width: 95%;
+    max-width: 100%; 
+    box-sizing: border-box;
+    background: lightblue;
+    flex-direction: row;
+    gap: 20px;
+    border-radius: 5px;
+    border: 2px solid var(--main-color);
+    box-shadow: 4px 4px var(--main-color);
+    z-index: 1000;
+    margin-left: auto;
+    margin-right: auto; 
+}
+
+.logo {
+    color: var(--font-color);
+    font-size: 24px;
+    font-weight: bold;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.button-nav {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    border: 2px solid var(--main-color);
+    background-color: var(--bg-color);
+    box-shadow: 4px 4px var(--main-color);
+    color: var(--font-color);
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon {
+    width: 24px;
+    height: 24px;
+    fill: var(--main-color);
+}
+
+form {
+    --input-focus: #2d8cf0;
+    --font-color: #323232;
+    --font-color-sub: #666;
+    --bg-color: beige;
+    --main-color: black;
+    width: 100%;
+    max-width: 450px;
+    box-sizing: border-box;
+    padding: 20px;
+    background: lightblue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    border-radius: 5px;
+    border: 2px solid var(--main-color);
+    box-shadow: 4px 4px var(--main-color);
+}
+
+.title {
+    color: var(--font-color);
+    font-weight: 900;
+    font-size: 20px;
+    margin-bottom: 25px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.title span {
+    color: var(--font-color-sub);
+    font-weight: 600;
+    font-size: 17px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.input {
+    width: 380px;
+    height: 40px;
+    border-radius: 5px;
+    border: 2px solid var(--main-color);
+    background-color: var(--bg-color);
+    box-shadow: 4px 4px var(--main-color);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--font-color);
+    padding: 5px 10px;
+    outline: none;
+}
+
+textarea {
+    resize: none;
+    width: 380px;
+    height: 150px;
+    border-radius: 5px;
+    border: 2px solid var(--main-color);
+    background-color: var(--bg-color);
+    box-shadow: 4px 4px var(--main-color);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--font-color);
+    padding: 5px 10px;
+    outline: none;
+}
+
+.input::placeholder {
+    color: var(--font-color-sub);
+    opacity: 0.8;
+}
+
+textarea::placeholder {
+    color: var(--font-color-sub);
+    opacity: 0.8;
+}
+
+
+.input:focus {
+    border: 2px solid var(--input-focus);
+}
+
+textarea:focus {
+    border: 2px solid var(--input-focus);
+}
+
+.button-nav:active,.button:active {
+    box-shadow: 0px 0px var(--main-color);
+    transform: translate(3px, 3px);
+}
+
+.button {
+    margin: 50px auto 0 auto;
+    width: 130px;
+    height: 40px;
+    border-radius: 5px;
+    border: 2px solid var(--main-color);
+    background-color: var(--bg-color);
+    box-shadow: 4px 4px var(--main-color);
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--font-color);
+    cursor: pointer;
+}
+
+.loading {
+    display: none; 
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    height: auto;
+    z-index: 1000;
+    
+}
+
+.loading-content {
+    position: relative;
+    width: fit-content; 
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 300px 200px rgba(0,0,0,0.62);
+}
+
+.animate {
+    -webkit-animation: animatezoom 0.6s;
+    animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+    from {-webkit-transform: scale(0)} 
+    to {-webkit-transform: scale(1)}
+}
+
+@keyframes animatezoom {
+    from {transform: scale(0)} 
+    to {transform: scale(1)}
+}
+
+.wave-menu {
+    border: 4px solid lightblue;
+    border-radius: 50px;
+    width: 200px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    transition: ease 0.2s;
+    position: relative;
+    background: lightblue;
+}
+
+.wave-menu li {
+    list-style: none;
+    height: 30px;
+    width: 4px;
+    border-radius: 10px;
+    background: #fff;
+    margin: 0 6px;
+    padding: 0;
+    animation-name: wave1;
+    animation-duration: 0.3s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    transition: ease 0.2s;
+}
+
+.wave-menu li:nth-child(2) {
+    animation-name: wave2;
+    animation-delay: 0.2s;
+}
+
+.wave-menu li:nth-child(3) {
+    animation-name: wave3;
+    animation-delay: 0.23s;
+    animation-duration: 0.4s;
+}
+
+.wave-menu li:nth-child(4) {
+    animation-name: wave4;
+    animation-delay: 0.1s;
+    animation-duration: 0.3s;
+}
+
+.wave-menu li:nth-child(5) {
+    animation-delay: 0.5s;
+}
+
+.wave-menu li:nth-child(6) {
+    animation-name: wave2;
+    animation-duration: 0.5s;
+}
+
+.wave-menu li:nth-child(8) {
+    animation-name: wave4;
+    animation-delay: 0.4s;
+    animation-duration: 0.25s;
+}
+
+.wave-menu li:nth-child(9) {
+    animation-name: wave3;
+    animation-delay: 0.15s;
+}
+
+@keyframes wave1 {
+    from {
+        transform: scaleY(1);
+    }
+
+    to {
+        transform: scaleY(0.5);
+    }
+}
+
+@keyframes wave2 {
+    from {
+        transform: scaleY(0.3);
+    }
+
+    to {
+        transform: scaleY(0.6);
+    }
+}
+
+@keyframes wave3 {
+    from {
+        transform: scaleY(0.6);
+    }
+
+    to {
+        transform: scaleY(0.8);
+    }
+}
+
+@keyframes wave4 {
+    from {
+        transform: scaleY(0.2);
+    }
+
+    to {
+        transform: scaleY(0.5);
+    }
+}
+
+h4 {
+    color: #323232;
+    font-weight: 900;
+    font-size: 15px;
+    margin-bottom: 25px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
