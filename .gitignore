@@ -1,4 +1,3 @@
-
 *.pyc
 *.pyo
 __pycache__/
@@ -14,3 +13,4 @@ Thumbs.db
 *.so
 secrets.json
 config.json
+
