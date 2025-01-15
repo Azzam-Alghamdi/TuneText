@@ -40,13 +40,6 @@ else:
 
 Session(app)
 
-@app.route('/')
-def home():
-    # Check if the username is already in the session
-    if 'username' not in session:
-        return redirect(url_for('get_username'))
-    return render_template('index.html')
-
 @app.route('/get_username', methods=['GET', 'POST'])
 def home():
     if 'username' not in session:
@@ -65,11 +58,14 @@ def process():
     user_description = request.form.get('user_description')
     playlist_name = request.form.get('playlist_name')
     
+    set_user_description(user_description)
+
     try:
-        set_user_description(user_description)
         songs = gen_songs()  # Generate songs based on user input
-    except Exception as e:
-        print(f"Error generating songs: {e}")
-        return render_template("index.html", error="There was an error generating your playlist.")
+        username = session['username']  # Get the username from the session
+        # Pass the playlist name, songs list, and username to check_song
+        gen_playlist.create_playlist(songs, playlist_name, username=username)  # Create the playlist
+    except ValueError as e:
+        return str(e)
     
     return render_template("index.html", songs=songs)
