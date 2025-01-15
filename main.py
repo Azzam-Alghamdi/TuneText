@@ -26,8 +26,10 @@ if 'REDIS_URL' in os.environ:
         host=url.hostname,
         port=url.port,
         password=url.password,
-        db=0
+        db=0,
+        socket_keepalive=True # 5 seconds timeout
     )
+
 else:
     # For local development, use the default Redis configuration
     app.config['SESSION_TYPE'] = 'redis'
