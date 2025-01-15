@@ -2,9 +2,42 @@ from flask import Flask, render_template, request, session, redirect, url_for
 from gen_songs import gen_songs, set_user_description
 import gen_playlist
 import secrets
+import redis
+from flask_session import Session
+import os
+from urllib.parse import urlparse
 
+# Flask app setup
 app = Flask(__name__, static_folder='static')
+
+# Setup session (use Redis for session storage in production)
 app.secret_key = secrets.token_hex(16)
+
+# Configure Redis for session storage
+if 'REDIS_URL' in os.environ:
+    # For Heroku deployment, use the Redis URL provided by the Redis add-on
+    redis_url = os.getenv('REDIS_URL')
+    url = urlparse(redis_url)
+    app.config['SESSION_TYPE'] = 'redis'
+    app.config['SESSION_PERMANENT'] = False
+    app.config['SESSION_USE_SIGNER'] = True
+    app.config['SESSION_KEY_PREFIX'] = 'flask_'
+    app.config['SESSION_REDIS'] = redis.StrictRedis(
+        host=url.hostname,
+        port=url.port,
+        password=url.password,
+        db=0
+    )
+else:
+    # For local development, use the default Redis configuration
+    app.config['SESSION_TYPE'] = 'redis'
+    app.config['SESSION_PERMANENT'] = False
+    app.config['SESSION_USE_SIGNER'] = True
+    app.config['SESSION_KEY_PREFIX'] = 'flask_'
+    app.config['SESSION_REDIS'] = redis.StrictRedis(host='localhost', port=6379, db=0)  # For local Redis server
+
+Session(app)
+
 @app.route('/')
 def home():
     # Check if the username is already in the session
