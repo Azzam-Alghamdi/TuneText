@@ -4,7 +4,11 @@ from spotipy.oauth2 import SpotifyOAuth
 # Spotify API credentials
 client_id = "5d95346db46d4714af2256f180e5313e"
 client_secret = "b9127e95e3df4ab1bbcb7b1e2d3137c6"
+<<<<<<< HEAD
 redirect_uri = "http://127.0.0.1/callback"
+=======
+redirect_uri = "https://tune-text-b6b69ec003dd.herokuapp.com/callback"
+>>>>>>> a27f38ab5df40ce7ad861f2f08a3a9b697b7d391
 
 # Define the necessary scope
 SCOPE = "playlist-modify-public playlist-modify-private"
