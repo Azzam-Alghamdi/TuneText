@@ -1,19 +1,12 @@
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 
-# Spotify API credentials
-client_id = "5d95346db46d4714af2256f180e5313e"
-client_secret = "b9127e95e3df4ab1bbcb7b1e2d3137c6"
-redirect_uri = "https://tune-text-b6b69ec003dd.herokuapp.com/callback"
-
-# Define the necessary scope
-SCOPE = "playlist-modify-public playlist-modify-private"
-
 # Authenticate and get the access token
-sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=client_id,
-                                               client_secret=client_secret,
-                                               redirect_uri=redirect_uri,
-                                               scope=SCOPE))
+sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
+    client_id="5d95346db46d4714af2256f180e5313e",
+    client_secret="b9127e95e3df4ab1bbcb7b1e2d3137c6",
+    redirect_uri="https://tune-text-b6b69ec003dd.herokuapp.com/callback",
+    scope="playlist-modify-public playlist-modify-private"))
 
 
 def create_playlist(songs, playlist_name, username=None):
