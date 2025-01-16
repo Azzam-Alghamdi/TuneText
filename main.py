@@ -1,48 +1,38 @@
-from flask import Flask, render_template, request, session, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for
 from gen_songs import gen_songs, set_user_description
 import gen_playlist
 import secrets
 
 app = Flask(__name__, static_folder='static')
 app.secret_key = secrets.token_hex(16)
+
 @app.route('/')
 def home():
-    # Check if the username is already in the session
-    if 'username' not in session:
-        return redirect(url_for('get_username'))
+    # Render the main page with the form
     return render_template('index.html')
-
-@app.route('/get_username', methods=['GET', 'POST'])
-def get_username():
-    if request.method == 'POST':
-        username = request.form.get('username')
-        if username:
-            session['username'] = username  # Store username in the session
-            return redirect(url_for('home'))
-        else:
-            return render_template('get_username.html', error="Please enter a valid username.")
-    return render_template('get_username.html')
 
 @app.route('/process', methods=['POST'])
 def process():
-    # Ensure the user has a username
-    if 'username' not in session:
-        return redirect(url_for('get_username'))
-    
-    # Get user input and playlist name from the form
-    user_description = request.form.get('user_description')
+    # Get user input from the form
+    username = request.form.get('username')  # Get the username directly from the form
     playlist_name = request.form.get('playlist_name')
-    
+    user_description = request.form.get('user_description')
+
+    if not username or not playlist_name or not user_description:
+        return "All fields are required. Please go back and fill out the form.", 400
+
+    # Set user description
     set_user_description(user_description)
 
     try:
-        songs = gen_songs()  # Generate songs based on user input
-        username = session['username']  # Get the username from the session
-        # Pass the playlist name, songs list, and username to check_song
+        # Generate songs based on user input
+        songs = gen_songs()
+        # Pass the playlist name, songs list, and username to create_playlist
         gen_playlist.create_playlist(songs, playlist_name, username=username)  # Create the playlist
     except ValueError as e:
         return str(e)
     
+    # Render the results or main page with the generated songs
     return render_template("index.html", songs=songs)
 
 if __name__ == '__main__':

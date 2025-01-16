@@ -24,6 +24,7 @@
     
     <form action="/process" method="POST">
         <div class="title">Welcome to TuneText,<br><span>Tell us your mood, and we'll create your playlist!</span></div>
+        <input class="input" type="text" id="username" name="username" placeholder="Spotify Username" required>
         <input class="input" id="playlist_name" name="playlist_name" placeholder="Playlist name" type="text" required>
         <textarea name="user_description" id="user_description" placeholder="Describe the playlist" required></textarea>
         <button class="button" type="submit" onclick="loading()">Generate →</button>
