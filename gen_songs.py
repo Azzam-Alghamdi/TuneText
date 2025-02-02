@@ -1,5 +1,5 @@
 import groq
-client = groq.Client(api_key="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")
+client = groq.Client(api_key="YOUR_API_KEY")
 
 user_description_value = ""
 
